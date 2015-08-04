@@ -1,12 +1,19 @@
-angular.module('testy').factory(
-        'serverCommunicator',
-        [
-                '$http',
-                function($http) {
-                    var service = {};
+angular.module('testy').factory('serverCommunicator', ['$http',
+    function($http) {
+      var service = {};
+      var base = BACKEND_PATH;
+      service.getLoggedInUserAsync = function() {
+        return $http.get(base + '/accounts/me');
+      };
 
-                    service.turnInTestAsync = function(test) {
-                        return $http.post('/api/tests/' + test.id + '/results', test.questions);
-                    };
-                    return service;
-                } ]);
+      service.loginAsync = function(username, password) {
+        return $http.post(base + '/login?username=' + encodeURIComponent(username) + '&password=' + 
+          encodeURIComponent(password));
+      };
+
+      service.logoutAsync = function() {
+        return $http.get(base + '/logout');
+      };
+      return service;
+    }
+    ]);
