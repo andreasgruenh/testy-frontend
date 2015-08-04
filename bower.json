@@ -1,0 +1,19 @@
+{
+  "name": "testy",
+  "version": "1.0.0",
+  "authors": [
+    "Andreas Roth <art_github@rtline.de>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "angular-ui-router": "~0.2.15"
+  }
+}
