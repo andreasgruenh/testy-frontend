@@ -1,5 +1,10 @@
-angular.module('testy').controller('loginController', ['$scope', function($scope){
+angular.module('testy').controller('loginController', 
+    ['$scope', '$state', 'serverCommunicator', function($scope, $state, serverCommunicator){
 
-  console.log('Login Controller wurde geladen, wirklich');
-
+  $scope.login = function() {
+    serverCommunicator.loginAsync($scope.username, $scope.password).then(
+      function(data){
+        $state.go('app.home');
+      });
+  };
 }]);
