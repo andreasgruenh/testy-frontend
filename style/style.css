@@ -1,0 +1,28 @@
+body {
+}
+
+.login-container {
+  max-width: 50%;
+  margin:0 auto;
+  margin-top:50px;
+}
+
+.login-container .input-group {
+  margin-bottom:10px;
+}
+
+.login-container .section {
+  border-top:1px solid #eee;
+  padding:10px;
+}
+@media (max-width: 790px) {
+  .login-container {
+    max-width: 70%;
+  }
+}
+
+@media (max-width: 460px) {
+  .login-container {
+    max-width: 100%;
+  }
+}
