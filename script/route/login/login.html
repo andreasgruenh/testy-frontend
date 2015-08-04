@@ -1,6 +1,32 @@
-<h1>Login</h1>
-<form ng-submit="login()">
-  <input type="text" ng-model="username" placeholder="LDAP-Account">
-  <input type="password" ng-model="password" placeholder="password">
-  <input type="submit" value="Login">
-</form>
+<div class="login-container">
+  <div align="center">
+    <div class=".container">
+      <form ng-submit="login()">
+        <div class="input-group input-group-lg">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+          <input class="form-control" placeholder="Dein LDAP"
+          type="text" name="username" ng-model="username" required>
+      </div>
+      <div class="input-group input-group-lg">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+        <input class="form-control" placeholder="Dein Passwort"
+        type="password" name="password" ng-model="password" required>
+      </div>
+        <div class="section">
+          <div class="col-xs-4">
+            <label>
+              <input type="checkbox" ng-model="rememberCredentials"> Remember me!
+            </label>
+          </div>
+          <div class="col-xs-8">
+            <button type="submit" value="Login"
+              class="btn btn-default btn-success btn-block" data-toggle="modal"
+              id="loginButton">
+              <span class="glyphicon glyphicon-check"></span> Login.
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

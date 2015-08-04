@@ -1,0 +1,25 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed"
+        data-toggle="collapse" data-target="#navbar-one">
+        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse text-center" id="navbar-one">
+      <ul class="nav navbar-nav">
+        <li><a ui-sref="app.home">
+          <span class="glyphicon glyphicon-home"></span> Home
+        </a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a ui-sref="app.profile">
+          <span class="glyphicon glyphicon-user"></span> {{user.accountName}}
+        </a></li>
+        <li><a href="#logout" ng-click="logout()">
+          <span class="glyphicon glyphicon-log-out"></span> Logout
+      </a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
