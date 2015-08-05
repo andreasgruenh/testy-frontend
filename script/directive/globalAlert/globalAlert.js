@@ -12,8 +12,7 @@ angular.module('testy').directive('globalalert', function() {
       $scope.show = false;
 
       $scope.close = function() {
-        $scope.show = false;
-        console.log($scope);
+        $('.global-alert-container').removeClass('in');
       };
 
       $scope.$watch('show', function(newVal, oldVal) {
