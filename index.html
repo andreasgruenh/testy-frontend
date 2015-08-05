@@ -14,8 +14,9 @@
 
 <script src="script/vendor/bundle.min.js"></script>
 <script src="script/all.min.js"></script>
-<div class="app" ng-app="testy" id="app" ng-cloak>
+<div class="app" ng-app="testy" ng-controller="testyController" id="app" ng-cloak>
   <div class="app-ui" ui-view></div>
+  <globalmodal text="globalModalText" callback="globalModalFunction()"></globalmodal>
 </div>
 </body>
 </html>
