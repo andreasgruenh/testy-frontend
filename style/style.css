@@ -15,6 +15,22 @@ body {
   border-top:1px solid #eee;
   padding:10px;
 }
+
+.global-alert-container {
+  position:fixed;
+  bottom:0;
+  width:100%;
+  padding:10px;
+  transition:transform 0.5s, opacity 0.5s;
+  transform:translate3d(0,100%,0);
+  opacity:0;
+}
+
+.global-alert-container.in {
+  transform:translate3d(0,0,0);
+  opacity:1;
+}
+
 @media (max-width: 790px) {
   .login-container {
     max-width: 70%;
