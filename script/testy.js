@@ -1,4 +1,4 @@
-var app = angular.module('testy', ['ui.router']);
+var app = angular.module('testy', ['ui.router', 'ngSanitize']);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
