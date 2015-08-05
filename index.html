@@ -1,4 +1,4 @@
-<!doctype html>
+
 <html>
 <head>
 <meta charset="utf-8">
@@ -17,6 +17,8 @@
 <div class="app" ng-app="testy" ng-controller="testyController" id="app" ng-cloak>
   <div class="app-ui" ui-view></div>
   <globalmodal text="globalModalText" callback="globalModalFunction()"></globalmodal>
+  <globalalert type="globalAlertType" text="globalAlertText"
+      caption="globalAlertCaption" show="globalAlertShow"></globalalert>
 </div>
 </body>
 </html>
