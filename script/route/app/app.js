@@ -11,4 +11,13 @@ angular.module('testy').controller('appController', [
           });
         $event.preventDefault();
       };
+
+      if($scope.globals.currentUser.firstname === null ||
+          $scope.globals.currentUser.lastname === null ||
+          $scope.globals.currentUser.email === null) {
+        $state.go('app.profile');
+        $scope.globals.showGlobalAlert('warning', 'Achtung!',
+          'Bitte gib deine Profilinformationen ein');
+      }
+
     }]);

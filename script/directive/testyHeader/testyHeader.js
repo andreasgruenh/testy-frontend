@@ -11,6 +11,8 @@ angular.module('testy').directive('testyheader',
           '$state',
           'serverCommunicator',
           function($scope, $state, serverCommunicator) {
+
+            $scope.newUser = $scope.user;
             $scope.logout = function() {
               serverCommunicator.logoutAsync().success(
                 function(data, status, headers, config) {
@@ -18,7 +20,6 @@ angular.module('testy').directive('testyheader',
                 }).error(function(data, status, headers, config) {
                   console.log('Logout failed');
                 });
-              
             };
 
           }]
