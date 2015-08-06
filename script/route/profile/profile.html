@@ -1,0 +1,36 @@
+<div class="container">
+  <div align="center">
+    <div>
+      <div class="page-header">
+        <h1>Passe dein Profil an</h1>
+      </div>
+      <form ng-submit="save()">
+        <div>
+          <label for="firstname" align="left">Vorname
+            <input class="form-control"
+            type="text" name="firstname" ng-model="oldUser.firstname" required>
+          </label>
+        </div>
+        <div>
+          <label for="lastname" align="left">Nachname
+            <input class="form-control"
+            name="lastname" ng-model="oldUser.lastname" required>
+          </label>
+        </div>
+        <div>
+          <label for="email" align="left">E-Mail
+            <input type="email" class="form-control"
+            name="email" ng-model="oldUser.email" required>
+          </label>
+        </div>
+        <div class="section">
+            <button type="submit" value="Speichern"
+              class="btn btn-default btn-success"
+              id="loginButton">
+              <span class="glyphicon glyphicon-check"></span> Speichern
+            </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
