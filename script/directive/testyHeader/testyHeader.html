@@ -11,6 +11,9 @@
         <li><a ui-sref="app.home">
           <span class="glyphicon glyphicon-home"></span> Home
         </a></li>
+        <li ng-show="user.admin"><a ui-sref="app.users">
+          <span class="glyphicon glyphicon-th-list"></span> Alle Nutzer
+        </a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a ui-sref="app.profile">
