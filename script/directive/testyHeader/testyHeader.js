@@ -17,7 +17,7 @@ angular.module('testy').directive('testyheader',
                 function(data, status, headers, config) {
                   $state.go('login');
                 }).error(function(data, status, headers, config) {
-                  console.log('Logout failed');
+                  console.log('Logout fail');
                 });
             };
 
