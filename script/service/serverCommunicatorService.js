@@ -14,6 +14,10 @@ angular.module('testy').factory('serverCommunicator', ['$http',
       service.logoutAsync = function() {
         return $http.get(base + '/logout');
       };
+
+      service.updateAccountAsync = function(user) {
+        return $http.post(base + '/accounts/me', user);
+      };
       return service;
     }
     ]);
