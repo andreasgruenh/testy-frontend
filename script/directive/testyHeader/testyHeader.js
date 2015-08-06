@@ -12,13 +12,12 @@ angular.module('testy').directive('testyheader',
           'serverCommunicator',
           function($scope, $state, serverCommunicator) {
 
-            $scope.newUser = $scope.user;
             $scope.logout = function() {
               serverCommunicator.logoutAsync().success(
                 function(data, status, headers, config) {
                   $state.go('login');
                 }).error(function(data, status, headers, config) {
-                  console.log('Logout failed');
+                  console.log('Logout fail');
                 });
             };
 
