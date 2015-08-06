@@ -50,5 +50,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     templateUrl: 'template/profile.html'
   });
 $urlRouterProvider.otherwise("/login");
-
 }]);
+
+app.run(function($rootScope, $state, serverCommunicator) {
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        $('.navbar-collapse').collapse('hide');
+    });
+});
