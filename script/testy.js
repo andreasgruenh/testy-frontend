@@ -44,6 +44,12 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     templateUrl: 'template/home.html'
    })
 
+  .state('app.users', {
+    url: '/users',
+    controller: 'usersController',
+    templateUrl: 'template/users.html'
+  })
+
   .state('app.profile', {
     url: '/profile',
     controller: 'profileController',
