@@ -47,6 +47,13 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
   .state('app.users', {
     url: '/users',
     controller: 'usersController',
+    resolve: {
+      accounts: ['serverCommunicator', function(serverCommunicator) {
+        return serverCommunicator.getAllAccountsAsync().then(function(data) {
+          return data.data;
+        });
+      }]
+    },
     templateUrl: 'template/users.html'
   })
 

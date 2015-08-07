@@ -2,6 +2,7 @@ angular.module('testy').factory('serverCommunicator', ['$http',
     function($http) {
       var service = {};
       var base = BACKEND_PATH;
+
       service.getLoggedInUserAsync = function() {
         return $http.get(base + '/accounts/me');
       };
@@ -13,6 +14,10 @@ angular.module('testy').factory('serverCommunicator', ['$http',
 
       service.logoutAsync = function() {
         return $http.get(base + '/logout');
+      };
+
+      service.getAllAccountsAsync = function() {
+        return $http.get(base + '/accounts/');
       };
 
       service.updateAccountAsync = function(user) {
