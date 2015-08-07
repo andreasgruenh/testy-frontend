@@ -1,3 +1,8 @@
-angular.module('testy').controller('usersController', ['$scope', function($scope) {
-  
-}]);
+angular.module('testy').controller('usersController', [
+    '$scope',
+    'accounts',
+    function($scope, accounts) {
+      
+      $scope.accounts = accounts;
+
+    }]);
