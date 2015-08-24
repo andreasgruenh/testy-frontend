@@ -23,6 +23,7 @@ angular.module('testy').factory('serverCommunicator', ['$http',
       service.updateAccountAsync = function(user) {
         return $http.post(base + '/accounts/me', user);
       };
+
       return service;
     }
     ]);
