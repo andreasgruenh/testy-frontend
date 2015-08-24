@@ -56,7 +56,12 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     },
     templateUrl: 'template/users.html'
   })
-
+  
+  .state('app.debug', {
+    url: '/debug',
+    controller: 'debugController',
+    templateUrl: 'template/debug.html'
+  })
   .state('app.profile', {
     url: '/profile',
     controller: 'profileController',

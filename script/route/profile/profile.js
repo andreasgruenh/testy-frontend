@@ -10,4 +10,12 @@ angular.module('testy').controller('profileController', ['$scope', 'serverCommun
           }, function() {
           });
       };
+      var debugCounter = 0;
+      $scope.debug = function() {
+        if(debugCounter == 5) {
+          $scope.globals.currentUser.canDebug = true;
+          alert("Debuglevel freigeschaltet");
+        }
+        debugCounter++;
+      };
     }]);
