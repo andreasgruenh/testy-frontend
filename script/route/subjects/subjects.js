@@ -7,7 +7,7 @@ angular.module('testy').controller('subjectsController', [
 
       $scope.subjects = subjects;
 
-      $scope.addSubject = function(x) {
+      $scope.addSubject = function() {
         serverCommunicator.addSubjectAsync({ name: $scope.subjectName })
           .then(function(addedSubject) {
             $state.go('app.subject', { id: addedSubject.id });

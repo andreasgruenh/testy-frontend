@@ -6,6 +6,14 @@ angular.module('testy').controller('subjectController', [
     function($scope, $state, serverCommunicator, subject) {
       $scope.subject = subject;
 
+      $scope.saveSubject = function() {
+        serverCommunicator.saveSubjectAsync(subject)
+          .then(function(savedSubject) {
+            $scope.subject = savedSubject;
+            $scope.editMode = false;
+          });
+      };
+
       $scope.deleteThis = function() {
         $scope.globals.showGlobalModal(
           'Bist du sicher, dass du dieses Fach löschen willst?' +

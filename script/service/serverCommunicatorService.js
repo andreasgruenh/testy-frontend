@@ -44,6 +44,10 @@ angular.module('testy').factory('serverCommunicator', ['$http',
         return $http.delete(base + '/subjects/' + id);
       };
 
+      service.saveSubjectAsync = function(subject) {
+        return $http.patch(base + '/subjects/' + subject.id, subject).then(_.property('data'));
+      };
+
       return service;
     }
     ]);

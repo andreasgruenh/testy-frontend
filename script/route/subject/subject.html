@@ -5,6 +5,24 @@
       </button>
     <h1>{{subject.name}}</h1>
   </div>
+  <div class="section" ng-hide="editMode">
+    <label>Beschreibung:</label>
+    <p>{{_.isEmpty(subject.description) ? 'Keine Beschreibung vorhanden' : subject.description}}</p>
+    <button ng-show="globals.currentUser.admin" class="btn btn-secondary"
+            ng-click="editMode = true">
+    <span class="glyphicon glyphicon-edit"></span> Bearbeiten
+    </button>
+  </div>
+  <div class="section" ng-show="editMode">
+    <div class="form-group">
+      <label>Beschreibung:</label>
+      <textarea class="form-control" ng-model="subject.description"></textarea>
+    </div>
+    <button class="btn btn-secondary"
+            ng-click="saveSubject()">
+    <span class="glyphicon glyphicon-save"></span> Speichern
+    </button>
+  </div>
   <div ng-show="globals.currentUser.admin" class="section">
     <button ng-click="deleteThis()" class="delete-button btn btn-block btn-danger">
       Lösche dieses Fach
