@@ -2,9 +2,18 @@ angular.module('testy').controller('subjectController', [
     '$scope',
     '$state',
     'serverCommunicator',
+    'questionPools',
     'subject',
-    function($scope, $state, serverCommunicator, subject) {
+    function($scope, $state, serverCommunicator, questionPools, subject) {
       $scope.subject = subject;
+      $scope.questionPools = _.sortBy(questionPools, 'name');
+
+      $scope.addQuestionPool = function() {
+        serverCommunicator.addQuestionPoolAsync($scope.subject.id, { name: $scope.poolName })
+          .then(function(newPool) {
+            $scope.questionPools.push(newPool);
+          });
+      };
 
       $scope.saveSubject = function() {
         serverCommunicator.saveSubjectAsync(subject)

@@ -66,7 +66,10 @@ angular.module('testy')
     resolve: {
       subject: ['$stateParams', 'serverCommunicator', function($stateParams, serverCommunicator) {
         return serverCommunicator.getSubjectByIdAsync($stateParams.id);
-      }]
+      }],
+      questionPools: ['$stateParams', 'serverCommunicator', function($stateParams, serverCommunicator) {
+        return serverCommunicator.getQuestionPoolsForSubjectIdAsync($stateParams.id);
+      }],
     },
     templateUrl: 'template/subject.html'
   })

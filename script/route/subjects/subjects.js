@@ -5,7 +5,7 @@ angular.module('testy').controller('subjectsController', [
     'subjects',
     function($scope, $state, serverCommunicator, subjects) {
 
-      $scope.subjects = subjects;
+      $scope.subjects = _.sortBy(subjects, 'name');
 
       $scope.addSubject = function() {
         serverCommunicator.addSubjectAsync({ name: $scope.subjectName })

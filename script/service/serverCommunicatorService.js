@@ -48,6 +48,14 @@ angular.module('testy').factory('serverCommunicator', ['$http',
         return $http.patch(base + '/subjects/' + subject.id, subject).then(_.property('data'));
       };
 
+      service.getQuestionPoolsForSubjectIdAsync = function(id) {
+        return $http.get(base + '/subjects/' + id + '/pools').then(_.property('data'));
+      };
+
+      service.addQuestionPoolAsync = function(id, pool) {
+        return $http.post(base + '/subjects/' + id + '/pools', pool).then(_.property('data'));
+      };
+
       return service;
     }
     ]);
