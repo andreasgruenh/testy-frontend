@@ -5,8 +5,10 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var livereload = require('gulp-livereload');
 var jshint = require('gulp-jshint');
-var autoprefixer = require('gulp-autoprefixer');
+var autoprefixer = require('autoprefixer');
 var minifyCss = require('gulp-minify-css');
+var sass = require('gulp-sass');
+var postcss = require('gulp-postcss');
 
 function handleError(err) {
   console.log(err.toString());
@@ -28,11 +30,12 @@ gulp.task('buildProduction', ['lint', 'copyVendorJs', 'copyVendorCss', 'copyFont
 
 gulp.task('copyVendorJs', function() {
   gulp.src([
-    'bower_components/jquery/dist/jquery.min.js',
-    'bower_components/angular/angular.min.js',
-    'bower_components/angular-ui-router/release/angular-ui-router.min.js',
-    'bower_components/angular-sanitize/angular-sanitize.min.js',
-    'bower_components/bootstrap/dist/js/bootstrap.min.js'
+    'bower_components/jquery/dist/jquery.js',
+    'bower_components/angular/angular.js',
+    'bower_components/angular-ui-router/release/angular-ui-router.js',
+    'bower_components/angular-sanitize/angular-sanitize.js',
+    'bower_components/bootstrap/dist/js/bootstrap.js',
+    'bower_components/lodash/dist/lodash.js',
     ]).pipe(concat('bundle.min.js'))
     .pipe(gulp.dest('target/script/vendor/'));
 });
@@ -69,14 +72,11 @@ gulp.task('scriptsProduction', function() {
 });
 
 gulp.task('styles', function() {
-  return gulp.src('style/**/*')
-      .pipe(concat('bundle.css'))
-      .pipe(autoprefixer({
-            browsers: ['> 5%'],
-            cascade: false
-            }))
-      .pipe(minifyCss())
-      .pipe(gulp.dest('target/style/'));
+  return gulp.src('style/*.scss')
+    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+    .pipe(concat('bundle.css'))
+    .pipe(postcss([autoprefixer({ browsers: ['> 5%'] })]))
+    .pipe(gulp.dest('target/style'));
 });
 
 gulp.task('copyIndex', function() {
@@ -95,6 +95,7 @@ gulp.task('watch', function() {
   gulp.watch('script/**/*', ['build']);
   gulp.watch('style/**/*', ['build']);
   gulp.watch('index.html', ['build']);
+  gulp.start('build');
 });
 
 gulp.task('lint', function() {

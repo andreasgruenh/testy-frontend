@@ -12,7 +12,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         return serverCommunicator.getLoggedInUserAsync().then(
           function(data){
             $state.go('app.home');
-          }, 
+          },
           function(data){
           }
           );
@@ -25,14 +25,9 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     controller: 'appController',
     resolve: {
       loggedInUser: ['$state', 'serverCommunicator', function($state, serverCommunicator){
-        return serverCommunicator.getLoggedInUserAsync().then(
-          function(data){
-            return data.data;
-          }, 
-          function(data){
-            $state.go('login');
-          }
-        );
+        return serverCommunicator.getLoggedInUserAsync().catch(function(data){
+          $state.go('login');
+        });
       }]
     },
     templateUrl: 'template/app.html'
@@ -49,14 +44,23 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     controller: 'usersController',
     resolve: {
       accounts: ['serverCommunicator', function(serverCommunicator) {
-        return serverCommunicator.getAllAccountsAsync().then(function(data) {
-          return data.data;
-        });
+        return serverCommunicator.getAllAccountsAsync();
       }]
     },
     templateUrl: 'template/users.html'
   })
-  
+
+  .state('app.subjects', {
+    url: '/subjects',
+    controller: 'subjectsController',
+    resolve: {
+      subjects: ['serverCommunicator', function(serverCommunicator) {
+        return serverCommunicator.getAllSubjectsAsync();
+      }]
+    },
+    templateUrl: 'template/subjects.html'
+  })
+
   .state('app.debug', {
     url: '/debug',
     controller: 'debugController',

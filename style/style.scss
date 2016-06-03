@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+}
+
+.login-container {
+  margin-top:50px;
+}
+
+.container .input-group {
+  margin-bottom:10px;
+}
+
+.container .section {
+  border-bottom:1px solid #eee;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.global-alert-container {
+  position:fixed;
+  bottom:0;
+  width:100%;
+  padding:10px;
+  transition:transform 0.5s, opacity 0.5s;
+  transform:translate3d(0,100%,0);
+  opacity:0;
+}
+
+.global-alert-container.in {
+  transform:translate3d(0,0,0);
+  opacity:1;
+}
+
+.subjects-page {
+  .subject {
+    text-align: left;
+
+    .title {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    div {
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    span { vertical-align: middle }
+
+    .glyphicon {
+      font-size: 3em;
+    }
+  }
+}

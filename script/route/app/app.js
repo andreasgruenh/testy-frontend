@@ -3,6 +3,7 @@ angular.module('testy').controller('appController', [
     function($scope, $state, serverCommunicator, loggedInUser) {
 
       $scope.globals.currentUser = loggedInUser;
+      $scope._ = _;
 
       $scope.logout = function($event) {
         serverCommunicator.logoutAsync().then(
