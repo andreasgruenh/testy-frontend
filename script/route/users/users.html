@@ -1,3 +1,56 @@
-<li ng-repeat="account in accounts">
-  {{account.accountName}} - {{account.firstname}} {{account.lastname}}
-</li>
+<div class="page users-page">
+  <div class="page-header text-center">
+    <h1>Alle Nutzer</h1>
+  </div>
+  <div class="section">
+    <div class="table-responsive">
+      <table id="users-table" class="table">
+        <thead>
+          <tr>
+            <th class="col-xs-2">Accountname</th>
+            <th class="col-xs-3">Vorname</th>
+            <th class="col-xs-2">Nachname</th>
+            <th class="col-xs-1">Admin</th>
+            <th class="col-xs-3">E-Mail</th>
+            <th class="col-xs-1">Bearbeiten</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="account in accounts">
+            <td class="col-xs-2">{{account.accountName}}</td>
+            <td class="col-xs-3">
+              <span ng-hide="_.includes(editedAccounts, account)">{{account.firstname || '--'}}</span>
+              <input ng-show="_.includes(editedAccounts, account)" class="form-control" ng-model="editingCopiesById[account.id].firstname" />
+            </td>
+            <td class="col-xs-2">
+              <span ng-hide="_.includes(editedAccounts, account)">{{account.lastname || '--'}}</span>
+              <input ng-show="_.includes(editedAccounts, account)" class="form-control" ng-model="editingCopiesById[account.id].lastname" />
+            </td>
+            <td class="col-xs-1">
+              <input ng-hide="_.includes(editedAccounts, account)" type="checkbox" ng-checked="account.admin" disabled />
+              <input ng-show="_.includes(editedAccounts, account)" type="checkbox" ng-model="editingCopiesById[account.id].admin" />
+            </td>
+            <td class="col-xs-3">
+              <span ng-hide="_.includes(editedAccounts, account)">{{account.email || '--'}}</span>
+              <input ng-show="_.includes(editedAccounts, account)" class="form-control" ng-model="editingCopiesById[account.id].email" />
+            </td>
+            <td class="col-xs-1">
+              <button ng-click="editAccount(account)"
+                      ng-hide="_.includes(editedAccounts, account)" class="btn btn-primary">
+                <span class="glyphicon glyphicon-pencil"></span>
+              </button>
+              <div class="btn-group" ng-show="_.includes(editedAccounts, account)" >
+                <button ng-click="saveAccount(account)" class="btn btn-success">
+                  <span class="glyphicon glyphicon-floppy-disk"></span>
+                </button>
+                <button ng-click="cancelEditing(account)" class="btn btn-danger">
+                  <span class="glyphicon glyphicon-remove-circle"></span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

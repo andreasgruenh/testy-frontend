@@ -52,6 +52,19 @@ body {
   }
 }
 
+.users-page {
+  #users-table {
+    table-layout: fixed;
+
+    td {
+      height: 55px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      vertical-align: middle;
+    }
+  }
+}
+
 .subjects-page {
   .subject {
     text-align: left;

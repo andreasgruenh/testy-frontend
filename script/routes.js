@@ -43,7 +43,9 @@ angular.module('testy')
     controller: 'usersController',
     resolve: {
       accounts: ['serverCommunicator', function(serverCommunicator) {
-        return serverCommunicator.getAllAccountsAsync();
+        return serverCommunicator.getAllAccountsAsync().catch(function(data){
+          $state.go('login');
+        });
       }]
     },
     templateUrl: 'template/users.html'

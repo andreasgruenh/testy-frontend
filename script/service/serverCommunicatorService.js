@@ -28,6 +28,10 @@ angular.module('testy').factory('serverCommunicator', ['$http',
         return $http.post(base + '/accounts/me', user).then(_.property('data'));
       };
 
+      service.updateOtherAccountAsync = function(account) {
+        return $http.post(base + '/accounts/' + account.id, account).then(_.property('data'));
+      };
+
       service.getAllSubjectsAsync = function() {
         return $http.get(base + '/subjects/').then(_.property('data'));
       };

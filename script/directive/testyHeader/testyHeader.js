@@ -11,7 +11,6 @@ angular.module('testy').directive('testyheader',
           '$state',
           'serverCommunicator',
           function($scope, $state, serverCommunicator) {
-
             $scope.logout = function() {
               serverCommunicator.logoutAsync().success(
                 function(data, status, headers, config) {
