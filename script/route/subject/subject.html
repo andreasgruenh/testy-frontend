@@ -1,0 +1,13 @@
+<div class="page subject-page">
+  <div class="page-header text-center">
+      <button class="back-button btn btn-default" ui-sref="app.subjects">
+        <span class="glyphicon glyphicon-chevron-left"></span>Zurück zu allen Fächern
+      </button>
+    <h1>{{subject.name}}</h1>
+  </div>
+  <div ng-show="globals.currentUser.admin" class="section">
+    <button ng-click="deleteThis()" class="delete-button btn btn-block btn-danger">
+      Lösche dieses Fach
+    </button>
+  </div>
+</div>

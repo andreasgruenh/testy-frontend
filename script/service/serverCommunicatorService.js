@@ -8,8 +8,12 @@ angular.module('testy').factory('serverCommunicator', ['$http',
       };
 
       service.loginAsync = function(username, password) {
-        return $http.post(base + '/login?username=' + encodeURIComponent(username) + '&password=' +
-          encodeURIComponent(password));
+        return $http({
+          method: 'POST',
+          url: base + '/login',
+          data: $.param({username: username, password: password }),
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        });
       };
 
       service.logoutAsync = function() {
@@ -30,6 +34,14 @@ angular.module('testy').factory('serverCommunicator', ['$http',
 
       service.addSubjectAsync = function(subject) {
         return $http.post(base + '/subjects/', subject).then(_.property('data'));
+      };
+
+      service.getSubjectByIdAsync = function(id) {
+        return $http.get(base + '/subjects/' + id).then(_.property('data'));
+      };
+
+      service.deleteSubjectByIdAsync = function(id) {
+        return $http.delete(base + '/subjects/' + id);
       };
 
       return service;

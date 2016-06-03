@@ -34,6 +34,24 @@ body {
   opacity:1;
 }
 
+.page {
+  position: relative;
+}
+
+.back-button {
+  font-size: 0.8em;
+  right: 0;
+  position: absolute;
+  top: -30px;
+}
+
+.subject-page {
+  .delete-button {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+}
+
 .subjects-page {
   .subject {
     text-align: left;

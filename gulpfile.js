@@ -55,7 +55,7 @@ gulp.task('copyFonts', function() {
 });
 
 gulp.task('scripts', function() {
-  return gulp.src('script/**/*.js')
+  return gulp.src(['script/testy.js', 'script/**/*.js'])
       .pipe(concat('all.js'))
       .pipe(gulp.dest('target/script/'))
       .pipe(rename('all.min.js'))
@@ -63,7 +63,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('scriptsProduction', function() {
-  return gulp.src('script/**/*.js')
+  return gulp.src(['script/testy.js', 'script/**/*.js'])
       .pipe(concat('all.js'))
       .pipe(gulp.dest('target/script/'))
       .pipe(rename('all.min.js'))
