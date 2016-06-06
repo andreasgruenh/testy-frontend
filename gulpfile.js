@@ -30,12 +30,12 @@ gulp.task('buildProduction', ['lint', 'copyVendorJs', 'copyVendorCss', 'copyFont
 
 gulp.task('copyVendorJs', function() {
   gulp.src([
-    'bower_components/jquery/dist/jquery.js',
-    'bower_components/angular/angular.js',
-    'bower_components/angular-ui-router/release/angular-ui-router.js',
-    'bower_components/angular-sanitize/angular-sanitize.js',
-    'bower_components/bootstrap/dist/js/bootstrap.js',
-    'bower_components/lodash/dist/lodash.js',
+    'bower_components/jquery/dist/jquery.min.js',
+    'bower_components/angular/angular.min.js',
+    'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+    'bower_components/angular-sanitize/angular-sanitize.min.js',
+    'bower_components/bootstrap/dist/js/bootstrap.min.js',
+    'bower_components/lodash/dist/lodash.min.js',
     ]).pipe(concat('bundle.min.js'))
     .pipe(gulp.dest('target/script/vendor/'));
 });
