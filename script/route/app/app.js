@@ -4,6 +4,7 @@ angular.module('testy').controller('appController', [
 
       $scope.globals.currentUser = loggedInUser;
       $scope._ = _;
+      $scope.window = window;
 
       $scope.logout = function($event) {
         serverCommunicator.logoutAsync().then(

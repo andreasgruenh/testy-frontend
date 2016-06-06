@@ -76,6 +76,17 @@ angular.module('testy')
     templateUrl: 'template/subject.html'
   })
 
+  .state('app.questionPool', {
+    url: '/question-pool/:id/',
+    controller: 'questionPoolController',
+    resolve: {
+      questionPool: ['$stateParams', 'serverCommunicator', function($stateParams, serverCommunicator) {
+        return serverCommunicator.getQuestionPoolByIdAsync($stateParams.id);
+      }],
+    },
+    templateUrl: 'template/questionPool.html'
+  })
+
   .state('app.debug', {
     url: '/debug',
     controller: 'debugController',

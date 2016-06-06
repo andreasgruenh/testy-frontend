@@ -56,8 +56,26 @@ angular.module('testy').factory('serverCommunicator', ['$http',
         return $http.get(base + '/subjects/' + id + '/pools').then(_.property('data'));
       };
 
+      service.getQuestionPoolByIdAsync = function(id) {
+        return $http.get(base + '/pools/' + id).then(_.property('data'));
+      };
+
       service.addQuestionPoolAsync = function(id, pool) {
         return $http.post(base + '/subjects/' + id + '/pools', pool).then(_.property('data'));
+      };
+
+      service.uploadMaterialForQuestionPool = function(id, file) {
+        var formData = new FormData();
+        formData.append('file', file);
+        return $http.post(base + '/pools/' + id + '/material', formData, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        });
+      };
+
+      service.saveQuestionPoolAsync = function(questionPool) {
+        return $http.patch(base + '/pools/' + questionPool.id, questionPool)
+          .then(_.property('data'));
       };
 
       return service;

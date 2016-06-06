@@ -16,10 +16,11 @@ angular.module('testy').controller('subjectController', [
       };
 
       $scope.saveSubject = function() {
-        serverCommunicator.saveSubjectAsync(subject)
+        serverCommunicator.saveSubjectAsync($scope.editedSubject)
           .then(function(savedSubject) {
             $scope.subject = savedSubject;
             $scope.editMode = false;
+            $scope.editedSubject = null;
           });
       };
 
@@ -34,5 +35,15 @@ angular.module('testy').controller('subjectController', [
                 $state.go('app.subjects');
               });
           });
+      };
+
+      $scope.edit = function() {
+        $scope.editMode = true;
+        $scope.editedSubject = _.cloneDeep($scope.subject);
+      };
+
+      $scope.cancel = function() {
+        $scope.editMode = false;
+        $scope.editedSubject = null;
       };
     }]);

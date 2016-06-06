@@ -37,14 +37,14 @@
             <td class="col-xs-1">
               <button ng-click="editAccount(account)"
                       ng-hide="_.includes(editedAccounts, account)" class="btn btn-primary">
-                <span class="glyphicon glyphicon-pencil"></span>
+                <span class="glyphicon glyphicon-edit"></span>
               </button>
               <div class="btn-group" ng-show="_.includes(editedAccounts, account)" >
                 <button ng-click="saveAccount(account)" class="btn btn-success">
                   <span class="glyphicon glyphicon-floppy-disk"></span>
                 </button>
                 <button ng-click="cancelEditing(account)" class="btn btn-danger">
-                  <span class="glyphicon glyphicon-remove-circle"></span>
+                  <span class="glyphicon glyphicon-remove"></span>
                 </button>
               </div>
             </td>
