@@ -1,0 +1,93 @@
+<div class="page pool-page">
+  <div class="page-header text-center">
+    <button class="back-button btn btn-default" ui-sref="app.subject({ id: subject.id })">
+      <span class="glyphicon glyphicon-chevron-left"></span>Zurück zum Fach
+    </button>
+    <h1>{{questionPool.name}}</h1>
+  </div>
+  <div class="section" ng-hide="editMode">
+    <h2>Allgmeines</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <label>Beschreibung:</label>
+        <p>{{_.isEmpty(questionPool.description) ?
+            'Keine Beschreibung vorhanden' :
+            questionPool.description}}
+        </p>
+      </div>
+      <div class="col-md-4">
+        <label>Mindestprozentzahl um zu bestehen:</label>
+        <p>{{questionPool.percentageToPass}}%</p>
+      </div>
+      <div class="col-md-4">
+        <label>Anzahl der Wochen, nachdem der Test wiederholt werden muss (0 um Erinnerungen zu deaktivieren):</label>
+        <p>{{ questionPool.weeksAfterWhichTestHasToBeRepeated }}
+        </p>
+      </div>
+      <div class="col-xs-12">
+        <label>Hochgeladenes Material:</label>
+        <a ng-hide="hasNoMaterial"
+           href="{{window.BACKEND_PATH}}/pools/{{questionPool.id}}/material" target="_new">
+           Herunterladen
+        </a>
+        <span ng-show="hasNoMaterial">Kein Material vorhanden</span>
+      </div>
+      <div class="col-xs-12">
+        <button class="btn btn-default" ng-click="edit()">
+          <span class="glyphicon glyphicon-edit"></span> Bearbeiten
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="section" ng-show="editMode">
+    <h2>Allgmeines</h2>
+    <form class="row" ng-submit="save()">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Beschreibung:</label>
+          <br>
+          <br>
+          <textarea class="form-control" ng-model="editedQuestionPool.description"></textarea>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Mindestprozentzahl um zu bestehen:</label>
+          <br>
+          <br>
+          <input class="form-control form-inline" type="number" max="100" min="0"
+                 ng-model="editedQuestionPool.percentageToPass" />
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Anzahl der Wochen, nachdem der Test wiederholt werden muss (0 um Erinnerungen zu deaktivieren):</label>
+          <br>
+          <input class="form-control form-inline" type="number" min="0"
+                 ng-model="editedQuestionPool.weeksAfterWhichTestHasToBeRepeated" />
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <div class="form-group">
+          <label>Hochgeladenes Material (PDF):</label>
+          <input type="file" class="form-control" testy-file-model="material" />
+        </div>
+      </div>
+      <div class="col-xs-12" ng-hide="editMode">
+        <button class="btn btn-default" ng-click="edit">
+          <span class="glyphicon glyphicon-edit"></span> Bearbeiten
+        </button>
+      </div>
+      <div class="col-xs-12" ng-show="editMode">
+        <div class="btn-group">
+          <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-floppy-disk"></span> Speichern
+          </button>
+          <button class="btn btn-warning" ng-click="cancel($event)">
+            <span class="glyphicon glyphicon-edit"></span> Abbrechen
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
