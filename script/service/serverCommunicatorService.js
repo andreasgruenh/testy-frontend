@@ -91,8 +91,17 @@ angular.module('testy').factory('serverCommunicator', ['$http',
           .then(_.property('data'));
       };
 
-      service.getQuestionsForCategory = function(categoryId) {
-        return $http.get(base + '/categories/' + id + '/questions').then(_.property('data'));
+      service.getCategoryByIdAsync = function(id) {
+        return $http.get(base + '/categories/' + id).then(_.property('data'));
+      };
+
+      service.getQuestionsForCategoryAsync = function(categoryId) {
+        return $http.get(base + '/categories/' + categoryId + '/questions').then(_.property('data'));
+      };
+
+      service.addQuestionAsync = function(categoryId, question) {
+        return $http.post(base + '/categories/' + categoryId + '/questions', question)
+          .then(_.property('data'));
       };
 
       return service;

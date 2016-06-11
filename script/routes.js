@@ -90,6 +90,20 @@ angular.module('testy')
     templateUrl: 'template/questionPool.html'
   })
 
+  .state('app.category', {
+    url: '/category/:id/',
+    controller: 'categoryController',
+    resolve: {
+      questions: ['$stateParams', 'serverCommunicator', function($stateParams, serverCommunicator) {
+        return serverCommunicator.getQuestionsForCategoryAsync($stateParams.id);
+      }],
+      category: ['$stateParams', 'serverCommunicator', function($stateParams, serverCommunicator) {
+        return serverCommunicator.getCategoryByIdAsync($stateParams.id);
+      }],
+    },
+    templateUrl: 'template/category.html'
+  })
+
   .state('app.debug', {
     url: '/debug',
     controller: 'debugController',

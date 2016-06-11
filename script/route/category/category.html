@@ -1,0 +1,25 @@
+<div class="page pool-page">
+  <div class="page-header text-center">
+    <button class="back-button btn btn-default" ui-sref="app.questionPool({ id: category.pool.id })">
+      <span class="glyphicon glyphicon-chevron-left"></span>Zurück zum Fragenpool
+    </button>
+    <h1>{{category.name}}</h1>
+  </div>
+  <ul>
+    <li ng-repeat="question in questions">
+      {{question.questionString}}
+    </li>
+  </ul>
+  <div class="section">
+    <h2>Frage hinzufügen</h2>
+    <label class="form-inline">Wähle die Fragenart:
+      <select ng-model="questionType" class="form-control">
+        <option value="mc">Multiple Choice</option>
+      </select>
+    </label>
+    <div ng-switch on="questionType">
+      <div ng-switch-when="mc"><mc-question-creator add="addQuestion(question)"/></div>
+      <div ng-switch-when="other"><test-question-creator add="addQuestion(question)"/></div>
+    </div>
+  </div>
+</div>
