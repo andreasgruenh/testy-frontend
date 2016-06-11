@@ -60,8 +60,12 @@ angular.module('testy').factory('serverCommunicator', ['$http',
         return $http.get(base + '/pools/' + id).then(_.property('data'));
       };
 
-      service.addQuestionPoolAsync = function(id, pool) {
-        return $http.post(base + '/subjects/' + id + '/pools', pool).then(_.property('data'));
+      service.getCategoriesOfPoolAsync = function(id) {
+        return $http.get(base + '/pools/' + id + '/categories').then(_.property('data'));
+      };
+
+      service.addQuestionPoolAsync = function(subjectId, pool) {
+        return $http.post(base + '/subjects/' + subjectId + '/pools', pool).then(_.property('data'));
       };
 
       service.uploadMaterialForQuestionPool = function(id, file) {
@@ -80,6 +84,15 @@ angular.module('testy').factory('serverCommunicator', ['$http',
 
       service.deleteQuestionPoolByIdAsync = function(id) {
         return $http.delete(base + '/pools/' + id);
+      };
+
+      service.addCategoryToPoolAsync = function(category, questionPoolId) {
+        return $http.post(base + '/pools/' + questionPoolId + '/categories', category)
+          .then(_.property('data'));
+      };
+
+      service.getQuestionsForCategory = function(categoryId) {
+        return $http.get(base + '/categories/' + id + '/questions').then(_.property('data'));
       };
 
       return service;

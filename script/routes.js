@@ -83,6 +83,9 @@ angular.module('testy')
       questionPool: ['$stateParams', 'serverCommunicator', function($stateParams, serverCommunicator) {
         return serverCommunicator.getQuestionPoolByIdAsync($stateParams.id);
       }],
+      categories: ['$stateParams', 'serverCommunicator', function($stateParams, serverCommunicator) {
+        return serverCommunicator.getCategoriesOfPoolAsync($stateParams.id);
+      }],
     },
     templateUrl: 'template/questionPool.html'
   })

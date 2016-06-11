@@ -4,11 +4,13 @@ angular.module('testy').controller('questionPoolController', [
     '$state',
     'serverCommunicator',
     'questionPool',
-    function($q, $scope, $state, serverCommunicator, questionPool) {
+    'categories',
+    function($q, $scope, $state, serverCommunicator, questionPool, categories) {
       $scope.questionPool = questionPool;
       $scope.subject = questionPool.subject;
+      $scope.categories = _.sortBy(categories, 'name');
       recalculateHasNoMaterial();
-
+      console.log(categories, questionPool);
       $scope.edit = function() {
         $scope.editMode = true;
         $scope.editedQuestionPool = _.cloneDeep($scope.questionPool);
@@ -38,6 +40,17 @@ angular.module('testy').controller('questionPoolController', [
                 $scope.globals.showGlobalAlert('success', 'Geschafft!', 'Der Fragenpool wurde gelöscht.');
                 $state.go('app.subject', {id: $scope.subject.id});
               });
+          });
+      };
+
+      $scope.addCategory = function() {
+        var newCategory = {
+          name: $scope.categoryName,
+          maxScore: $scope.questionCount * 10,
+        };
+        serverCommunicator.addCategoryToPoolAsync(newCategory, $scope.questionPool.id)
+          .then(function(addedCategory) {
+            $scope.categories = _.sortBy($scope.categories.concat([addedCategory]), 'name');
           });
       };
 
