@@ -1,15 +1,46 @@
-<div class="page pool-page">
+<div class="page category-page">
   <div class="page-header text-center">
     <button class="back-button btn btn-default" ui-sref="app.questionPool({ id: category.pool.id })">
       <span class="glyphicon glyphicon-chevron-left"></span>Zurück zum Fragenpool
     </button>
     <h1>{{category.name}}</h1>
   </div>
-  <ul>
-    <li ng-repeat="question in questions">
-      {{question.questionString}}
-    </li>
-  </ul>
+  <div class="section">
+    <h2>Allgemeines</h2>
+    <label>Anzahl der Fragen, die in einem Test aus dieser Kategorie stammen sollen:</label>
+    <p>{{category.maxScore / 10}}</p>
+    <label>Anzahl der Fragen, die in dieser Kategorie vorhanden sind:</label>
+    <p>{{_.size(questions)}}</p>
+    <div ng-show="category.maxScore / 10 > _.size(questions)" class="alert alert-danger">
+      <strong>Achtung!</strong>
+      In diesem Test sind nicht genug Fragen,
+      füge welche hinzu oder senke die erzielte Fragenanzahl!
+    </div>
+  </div>
+  <div class="section" ng-show="_.size(questions) > 0">
+    <h2>Fragen</h2>
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default" ng-repeat="question in questions">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <span class="panel-toggle row" data-toggle="collapse" data-parent="#accordion" href="#{{question.id}}" >
+              <span class="col-xs-11">{{question.questionString}}</span>
+              <span class="col-xs-1">
+                <button class="btn btn-danger" ng-click="deleteQuestion($event, question)">
+                  <span class="fa fa-remove"></span>
+                </button>
+              </span>
+            </span>
+          </h4>
+        </div>
+        <div id="{{question.id}}" class="panel-collapse collapse out">
+          <div class="panel-body">
+            Genaue Frage
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="section">
     <h2>Frage hinzufügen</h2>
     <label class="form-inline">Wähle die Fragenart:

@@ -104,6 +104,10 @@ angular.module('testy').factory('serverCommunicator', ['$http',
           .then(_.property('data'));
       };
 
+      service.deleteQuestionAsync = function(question) {
+        return $http.delete(base + '/questions/' + question.id);
+      }
+
       return service;
     }
     ]);

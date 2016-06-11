@@ -13,7 +13,20 @@ angular.module('testy').controller('categoryController', [
       $scope.addQuestion = function(question) {
         return serverCommunicator.addQuestionAsync($scope.category.id, question)
           .then(function(createdQuestion) {
-            $scope.questions = _.sortBy(questions.concat([createdQuestion]), 'id');
+            $scope.questions = _.sortBy($scope.questions.concat([createdQuestion]), 'id');
           });
+      };
+
+      $scope.deleteQuestion = function(event, question) {
+        event.stopPropagation();
+
+        $scope.globals.showGlobalModal(
+          'Bist du dir sicher, dass du diese Frage löschen möchtest?',
+          function() {
+            serverCommunicator.deleteQuestionAsync(question).then(function() {
+              _.pull($scope.questions, question);
+            });
+          }
+        );
       };
     }]);
