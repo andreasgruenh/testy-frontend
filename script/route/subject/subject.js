@@ -11,7 +11,7 @@ angular.module('testy').controller('subjectController', [
       $scope.addQuestionPool = function() {
         serverCommunicator.addQuestionPoolAsync($scope.subject.id, { name: $scope.poolName })
           .then(function(newPool) {
-            $scope.questionPools.push(newPool);
+            $state.go('app.questionPool', {id: newPool.id});
           });
       };
 

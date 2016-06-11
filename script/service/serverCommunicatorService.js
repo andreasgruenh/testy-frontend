@@ -78,6 +78,10 @@ angular.module('testy').factory('serverCommunicator', ['$http',
           .then(_.property('data'));
       };
 
+      service.deleteQuestionPoolByIdAsync = function(id) {
+        return $http.delete(base + '/pools/' + id);
+      };
+
       return service;
     }
     ]);

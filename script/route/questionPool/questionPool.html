@@ -88,6 +88,11 @@
           </button>
         </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
+  <div ng-show="globals.currentUser.admin" class="section">
+    <button ng-click="deleteThis()" class="delete-button btn btn-block btn-danger">
+      Lösche dieses Fach
+    </button>
+  </div>
 </div>
