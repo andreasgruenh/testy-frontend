@@ -1,4 +1,4 @@
-<div ng-show="isOnStartPage" class="page subject-page">
+<div ng-show="isOnStartPage && !finished" class="page subject-page">
   <div class="page-header text-center">
     <h1>Willkommen beim Test zum Fragenpool: {{questionPool.name}}</h1>
   </div>
@@ -14,6 +14,36 @@
     <button class="form-control btn btn-primary" ui-sref="app.test.question({ number: 1})">
       Zur ersten Frage
     </button>
+  </div>
+</div>
+<div ng-show="isOnStartPage && finished" class="page subject-page">
+  <div class="page-header text-center">
+    <h1 ng-show="passed">Gratuliere!</h1>
+    <h1 ng-hide="passed">Tut mir leid!</h1>
+  </div>
+  <div class="section">
+    <div class="progress">
+      <div class="progress-bar progress-bar-{{passed ? 'success' : 'danger'}}"
+           style="width: {{result.score}}%">
+        <span>{{result.score}}%</span>
+      </div>
+    </div>
+  </div>
+  <div class="section" ng-show="passed">
+    <p>Du hast es geschafft! Du hast insgesamt {{result.score}}% der Punkte erreicht!</p>
+    <p style="text-align: center">
+      <button class="btn btn-default" ui-sref="app.home">Home</button>
+    </p>
+  </div>
+  <div class="section" ng-hide="passed">
+    <p>
+      Leider hast du es nicht geschafft! Du hast insgesamt nur {{result.score}}% der Punkte
+      erreicht, du benötigst jedoch mindestens {{questionPool.percentageToPass}}%. Du kannst es
+      gleich noch einmal versuchen!
+    </p>
+    <p style="text-align: center">
+      <button class="btn btn-default" ui-sref="app.subject({id: questionPool.subject.id})">Zurück zum Fach</button>
+    </p>
   </div>
 </div>
 <div ui-view></div>

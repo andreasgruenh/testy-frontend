@@ -27,7 +27,10 @@ angular.module('testy').controller('testController', [
           $scope.questionPool.id,
           _.map(questions, transformQuestionToAnswer)
         ).then(function(result) {
-          console.log(result);
+          $scope.finished = true;
+          $state.go('app.test');
+          $scope.result = result;
+          $scope.passed = result.score >= $scope.questionPool.percentageToPass;
         });
       };
 
