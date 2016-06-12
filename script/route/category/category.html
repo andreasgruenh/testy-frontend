@@ -34,7 +34,8 @@
     </div>
   </div>
   <div class="section" ng-show="_.size(questions) > 0">
-    <h2>Fragen</h2>
+    <h2>Fragen<br><small>Hinweis: Wenn eine Frage bearbeitet wird, wird die alte Frage gelöscht und
+      das bearbeitete als neue Frage hinzugefügt.</small></h2>
     <div class="panel-group" id="accordion">
       <div class="panel panel-default" ng-repeat="question in questions">
         <div class="panel-heading">
@@ -48,13 +49,13 @@
           <h4 class="panel-title">
             <span class="panel-toggle" data-toggle="collapse" data-parent="#accordion" href="#{{question.id}}" >
               {{question.questionString}}
-
             </span>
           </h4>
         </div>
         <div id="{{question.id}}" class="panel-collapse collapse out">
-          <div class="panel-body">
-            Genaue Frage
+          <div class="panel-body" ng-switch on="question.type">
+            <div ng-switch-when="MCQuestion">
+              <mc-question-editor question="::question" save="updateQuestion(question)"/></div>
           </div>
         </div>
       </div>

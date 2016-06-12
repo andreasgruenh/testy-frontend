@@ -47,5 +47,14 @@ angular.module('testy').controller('categoryController', [
         });
       };
 
+      $scope.updateQuestion = function(question) {
+        return serverCommunicator.updateQuestionAsync(question).then(function(updatedQuestion) {
+          console.log(question, updatedQuestion);
+          $scope.questions = _.reject($scope.questions, ['id', question.id]);
+          $scope.questions = _.sortBy($scope.questions.concat([updatedQuestion]), 'id');
+          return updatedQuestion;
+        });
+      };
+
 
     }]);
