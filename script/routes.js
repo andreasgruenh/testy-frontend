@@ -1,4 +1,11 @@
 angular.module('testy')
+
+.run(['$rootScope', '$state', function($rootScope, $state) {
+  $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+    console.error(error);
+    $state.go('login');
+  });
+}])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
@@ -42,7 +49,7 @@ angular.module('testy')
     url: '/users',
     controller: 'usersController',
     resolve: {
-      accounts: ['serverCommunicator', function(serverCommunicator) {
+      accounts: ['serverCommunicator', '$state', function(serverCommunicator, $state) {
         return serverCommunicator.getAllAccountsAsync().catch(function(data){
           $state.go('login');
         });
@@ -102,6 +109,23 @@ angular.module('testy')
       }],
     },
     templateUrl: 'template/category.html'
+  })
+
+  .state('app.test', {
+    url: '/test/:id',
+    controller: 'testController',
+    resolve: {
+      test: ['$stateParams', 'serverCommunicator', function($stateParams, serverCommunicator) {
+        return serverCommunicator.getTestForQuestionPoolAsync($stateParams.id);
+      }],
+    },
+    templateUrl: 'template/test.html',
+  })
+
+  .state('app.test.question', {
+    url: '/question/:number',
+    controller: 'questionController',
+    templateUrl: 'template/question.html',
   })
 
   .state('app.debug', {

@@ -122,7 +122,9 @@ angular.module('testy').factory('serverCommunicator', ['$http',
           .then(_.property('data'));
       };
 
-
+      service.getTestForQuestionPoolAsync = function(questionPoolId) {
+        return $http.get(base + '/pools/' + questionPoolId + '/test').then(_.property('data'));
+      };
 
       return service;
     }
