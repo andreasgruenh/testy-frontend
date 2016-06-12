@@ -118,6 +118,9 @@ angular.module('testy')
       test: ['$stateParams', 'serverCommunicator', function($stateParams, serverCommunicator) {
         return serverCommunicator.getTestForQuestionPoolAsync($stateParams.id);
       }],
+      questionPool: ['$stateParams', 'serverCommunicator', function($stateParams, serverCommunicator) {
+        return serverCommunicator.getQuestionPoolByIdAsync($stateParams.id);
+      }],
     },
     templateUrl: 'template/test.html',
   })

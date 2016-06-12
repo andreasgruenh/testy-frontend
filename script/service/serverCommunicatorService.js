@@ -126,6 +126,11 @@ angular.module('testy').factory('serverCommunicator', ['$http',
         return $http.get(base + '/pools/' + questionPoolId + '/test').then(_.property('data'));
       };
 
+      service.sendTestAsync = function(questionPoolId, answers) {
+        return $http.post(base + '/pools/' + questionPoolId + '/test', answers)
+          .then(_.property('data'));
+      };
+
       return service;
     }
     ]);

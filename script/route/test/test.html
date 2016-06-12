@@ -1,11 +1,19 @@
 <div ng-show="isOnStartPage" class="page subject-page">
   <div class="page-header text-center">
-    <h1>Willkommen bei deinem Test</h1>
+    <h1>Willkommen beim Test zum Fragenpool: {{questionPool.name}}</h1>
   </div>
   <div class="section">
-    <a ui-sref="app.test.question({ number: 1})">
+    <p>
+      Im folgenden erhälst du  {{_.size(questions)}} Frage{{_.size(questions) > 1 ? 'n' : null}}.
+      Lass dir Zeit beim beantworten der Fragen, zum bestehen brauchst du mindestens
+      <b>{{ questionPool.percentageToPass }}%</b> der Maximalpunktzahl.
+      Es gibt <b>keine Zeitbegrenzung</b>.
+    </p>
+  </div>
+  <div class="section">
+    <button class="form-control btn btn-primary" ui-sref="app.test.question({ number: 1})">
       Zur ersten Frage
-    </a>
+    </button>
   </div>
 </div>
 <div ui-view></div>

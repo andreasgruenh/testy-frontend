@@ -1,9 +1,22 @@
 
 <div class="page-header text-center">
-  <h1>Frage</h1>
+  <h1>Frage {{questionNumber}} von {{_.size(questions)}}</h1>
+</div>
+<div class="section" ng-switch on="question.type">
+  <mc-question-solver question="question" ng-switch-when="MCQuestion" />
 </div>
 <div class="section">
-  <button class="btn btn-primary form-control" ui-sref="app.test">
-    Zurück
+  <ul class="pager">
+    <li ng-hide="questionNumber === 1">
+      <a ui-sref="app.test.question({number: questionNumber - 1})">Previous</a>
+    </li>
+    <li ng-hide="isLastQuestion">
+      <a ui-sref="app.test.question({number: questionNumber + 1})">Next</a>
+    </li>
+  </ul>
+</div>
+<div class="section" ng-show="isLastQuestion">
+  <button class="btn btn-success form-control" ng-click="sendTest(questions)">
+    Abschließen
   </button>
 </div>

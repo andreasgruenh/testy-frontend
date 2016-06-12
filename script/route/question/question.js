@@ -1,7 +1,7 @@
 angular.module('testy').controller('questionController', [
     '$scope',
-    '$state',
     'serverCommunicator',
-    function($scope, $state, serverCommunicator) {
-      console.log($scope);
+    function($scope, serverCommunicator) {
+      $scope.isLastQuestion = $scope.questionNumber === _.size($scope.questions);
+      $scope.question = $scope.questions[$scope.questionNumber - 1];
     }]);
