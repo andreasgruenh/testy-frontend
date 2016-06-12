@@ -108,6 +108,11 @@ angular.module('testy').factory('serverCommunicator', ['$http',
         return $http.delete(base + '/questions/' + question.id);
       };
 
+      service.updateCategoryAsync = function(category) {
+        return $http.patch(base + '/categories/' + category.id, category)
+          .then(_.property('data'));
+      };
+
       return service;
     }
     ]);

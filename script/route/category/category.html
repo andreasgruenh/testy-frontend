@@ -7,8 +7,24 @@
   </div>
   <div class="section">
     <h2>Allgemeines</h2>
-    <label>Anzahl der Fragen, die in einem Test aus dieser Kategorie stammen sollen:</label>
-    <p>{{category.maxScore / 10}}</p>
+    <div class="form-group form-inline">
+      <label>Anzahl der Fragen, die in einem Test aus dieser Kategorie stammen sollen:</label><br>
+      <p ng-hide="editMode">{{category.maxScore / 10}}</p>
+      <input type="number" class="form-control" ng-show="editMode" ng-model="categoryQuestionCount">
+    </div>
+    <div class="form-group">
+      <button ng-hide="editMode" class="btn btn-default" ng-click="editCategory()">
+        <span class="glyphicon glyphicon-edit"></span> Bearbeiten
+      </button>
+      <div class="btn-group">
+        <button ng-show="editMode" class="btn btn-success" ng-click="saveCategory()">
+          <span class="glyphicon glyphicon-floppy-disk"></span> Speichern
+        </button>
+        <button ng-show="editMode" class="btn btn-warning" ng-click="cancelEditing()">
+          <span class="glyphicon glyphicon-remove"></span> Abbrechen
+        </button>
+      </div>
+    </div>
     <label>Anzahl der Fragen, die in dieser Kategorie vorhanden sind:</label>
     <p>{{_.size(questions)}}</p>
     <div ng-show="category.maxScore / 10 > _.size(questions)" class="alert alert-danger">
@@ -22,14 +38,17 @@
     <div class="panel-group" id="accordion">
       <div class="panel panel-default" ng-repeat="question in questions">
         <div class="panel-heading">
+          <div class="remove-container">
+            <div class="remove-container-inner">
+              <button class="btn btn-danger center-block" ng-click="deleteQuestion($event, question)">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </div>
+          </div>
           <h4 class="panel-title">
-            <span class="panel-toggle row" data-toggle="collapse" data-parent="#accordion" href="#{{question.id}}" >
-              <span class="col-xs-11">{{question.questionString}}</span>
-              <span class="col-xs-1">
-                <button class="btn btn-danger" ng-click="deleteQuestion($event, question)">
-                  <span class="fa fa-remove"></span>
-                </button>
-              </span>
+            <span class="panel-toggle" data-toggle="collapse" data-parent="#accordion" href="#{{question.id}}" >
+              {{question.questionString}}
+
             </span>
           </h4>
         </div>

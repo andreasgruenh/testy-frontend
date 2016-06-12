@@ -19,7 +19,6 @@ angular.module('testy').controller('categoryController', [
 
       $scope.deleteQuestion = function(event, question) {
         event.stopPropagation();
-
         $scope.globals.showGlobalModal(
           'Bist du dir sicher, dass du diese Frage löschen möchtest?',
           function() {
@@ -29,4 +28,24 @@ angular.module('testy').controller('categoryController', [
           }
         );
       };
+
+      $scope.editCategory = function() {
+        $scope.editMode = true;
+        $scope.categoryQuestionCount = $scope.category.maxScore / 10;
+      };
+
+      $scope.cancelEditing = function() {
+        $scope.editMode = false;
+      };
+
+      $scope.saveCategory = function() {
+        var newCat = _.pick($scope.category, 'maxScore', 'name', 'id');
+        newCat.maxScore = $scope.categoryQuestionCount * 10;
+        serverCommunicator.updateCategoryAsync(newCat).then(function(savedCategory) {
+          $scope.category = savedCategory;
+          $scope.editMode = false;
+        });
+      };
+
+
     }]);

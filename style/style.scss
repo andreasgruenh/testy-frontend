@@ -70,6 +70,9 @@ body {
 }
 
 .category-page {
+  .panel-heading {
+    position: relative;
+  }
   .panel-toggle {
     cursor: pointer;
     text-decoration: underline;
@@ -77,9 +80,18 @@ body {
     .panel-title {
       vertical-align: middle;
     }
+  }
+  .remove-container {
+    height: 37.6px;
+    position: absolute;
+    right: 10;
+    top: 0;
+    display: table;
+  }
 
-    .btn {
-    }
+  .remove-container-inner {
+    display: table-cell;
+    vertical-align: middle;
   }
 }
 
