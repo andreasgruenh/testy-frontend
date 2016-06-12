@@ -1,0 +1,13 @@
+<div>
+  <p>{{question.questionString}}</p>
+</div>
+<div>
+  <div ng-repeat="possibility in question.possibleAnswers">
+    <div>
+      <label>
+        <input type="checkbox" ng-model="possibility.correct">
+        {{possibility.text}}
+      </label>
+    </div>
+  </div>
+</div>
