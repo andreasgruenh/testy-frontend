@@ -135,6 +135,50 @@
       </form>
     </div>
   </div>
+  <div class="section" ng-show="globals.currentUser.admin">
+    <h2>Resultate</h2>
+    <label for="accountName">
+      <span class="glyphicon glyphicon-search"></span> Suche nach einer Person:
+    </label>
+    <input class="form-control" type="text" name="accountName"
+      ng-model="accountName" placeholder="Name der Person"></input>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="col-xs-1">Accountname</th>
+              <th class="col-xs-2">Vorname</th>
+              <th class="col-xs-2">Nachname</th>
+              <th class="col-xs-2">Letzte erfolgreiche Punktzahl</th>
+              <th class="col-xs-4">Zeitpunkt des letzten Erfolges</th>
+              <th class="col-xs-1">Entfernen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="result in results | filter:accountName">
+              <td class="col-xs-1">{{result.user.accountName}}</td>
+              <td class="col-xs-2">
+                <span>{{result.user.firstname || '--'}}</span>
+              </td>
+              <td class="col-xs-2">
+                <span>{{result.user.lastname || '--'}}</span>
+              </td>
+              <td class="col-xs-2">
+                <span>{{result.score}}%</span>
+              </td>
+              <td class="col-xs-4">
+                <span>{{getTimeForTimestamp(result.timestamp)}}</span>
+              </td>
+              <td class="col-xs-1">
+                <button ng-click="deleteResult(result)" class="btn btn-danger">
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
   <div ng-show="globals.currentUser.admin" class="section">
     <button ng-click="deleteThis()" class="delete-button btn btn-block btn-danger">
       Lösche diesen Fragenpool

@@ -20,7 +20,7 @@ angular.module('testy').controller('testController', [
       $scope.logginRefreshInterval = setInterval(function() {
         serverCommunicator.getLoggedInUserAsync();
       }, tenMinutes);
-      // window.onbeforeunload = sure;
+      window.onbeforeunload = sure;
 
       $scope.sendTest = function(questions) {
         serverCommunicator.sendTestAsync(

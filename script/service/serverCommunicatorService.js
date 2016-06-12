@@ -131,6 +131,10 @@ angular.module('testy').factory('serverCommunicator', ['$http',
           .then(_.property('data'));
       };
 
+      service.deleteTestResultAsync = function(testResult) {
+        return $http.delete(base + '/test-results/' + testResult.id);
+      };
+
       return service;
     }
     ]);

@@ -9,6 +9,7 @@ angular.module('testy').controller('questionPoolController', [
       $scope.questionPool = questionPool;
       $scope.subject = questionPool.subject;
       $scope.categories = _.sortBy(categories, 'name');
+      $scope.results = questionPool.results;
       recalculateHasNoMaterial();
       $scope.edit = function() {
         $scope.editMode = true;
@@ -51,6 +52,22 @@ angular.module('testy').controller('questionPoolController', [
           .then(function(addedCategory) {
             $scope.categories = _.sortBy($scope.categories.concat([addedCategory]), 'name');
           });
+      };
+
+      $scope.getTimeForTimestamp = function(timestamp) {
+        var date = new Date(timestamp);
+        var year = date.getFullYear();
+        var month = _.padStart(date.getMonth() + 1, 2, '0');
+        var day = _.padStart(date.getDate(), 2, '0');
+        var hours = _.padStart(date.getHours(), 2, '0');
+        var mins = _.padStart(date.getMinutes(), 2, '0');
+        return day + '.' + month + '.' + year + ' - ' + hours + ':' + mins + ' Uhr';
+      };
+
+      $scope.deleteResult = function(result) {
+        serverCommunicator.deleteTestResultAsync(result).then(function() {
+          _.pull($scope.results, result);
+        });
       };
 
       function savePoolAsync() {

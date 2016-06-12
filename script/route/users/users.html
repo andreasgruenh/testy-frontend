@@ -3,6 +3,11 @@
     <h1>Alle Nutzer</h1>
   </div>
   <div class="section">
+    <label for="accountName">
+      <span class="glyphicon glyphicon-search"></span> Suche nach einer Person:
+    </label>
+    <input class="form-control" type="text" name="filter"
+      ng-model="filter" placeholder="Name der Person"></input>
     <div class="table-responsive">
       <table id="users-table" class="table">
         <thead>
@@ -16,7 +21,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="account in accounts">
+          <tr ng-repeat="account in accounts | filter:filter">
             <td class="col-xs-2">{{account.accountName}}</td>
             <td class="col-xs-3">
               <span ng-hide="_.includes(editedAccounts, account)">{{account.firstname || '--'}}</span>
