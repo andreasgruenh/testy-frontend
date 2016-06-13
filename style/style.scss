@@ -76,11 +76,15 @@ body {
   .panel-toggle {
     cursor: pointer;
     text-decoration: underline;
-
-    .panel-title {
-      vertical-align: middle;
-    }
   }
+
+  .panel-title {
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 50px;
+  }
+
   .remove-container {
     height: 37.6px;
     position: absolute;
