@@ -7,7 +7,7 @@ angular.module('testy').controller('appController', [
       $scope.window = window;
 
       $scope.logout = function($event) {
-        serverCommunicator.logoutAsync().then(
+        return serverCommunicator.logoutAsync().then(
           function() {
             $state.go('login');
           });

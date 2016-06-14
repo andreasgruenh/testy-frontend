@@ -23,7 +23,7 @@ angular.module('testy').controller('testController', [
       window.onbeforeunload = sure;
 
       $scope.sendTest = function(questions) {
-        serverCommunicator.sendTestAsync(
+        return serverCommunicator.sendTestAsync(
           $scope.questionPool.id,
           _.map(questions, transformQuestionToAnswer)
         ).then(function(result) {
