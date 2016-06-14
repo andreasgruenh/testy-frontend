@@ -95,7 +95,7 @@ angular.module('testy').factory('serverCommunicator', ['$state', '$http', '$root
       };
 
       service.saveQuestionPoolAsync = function(questionPool) {
-        return $http.patch(base + '/pools/' + questionPool.id, questionPool)
+        return $http.patch(base + '/pools/' + questionPool.id, _.omit(questionPool, 'results'))
           .then(_.property('data')).catch(showRequestError);
       };
 

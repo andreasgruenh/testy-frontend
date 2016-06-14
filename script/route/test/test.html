@@ -31,6 +31,7 @@
   </div>
   <div class="section" ng-show="passed">
     <p>Du hast es geschafft! Du hast insgesamt {{result.score}}% der Punkte erreicht!</p>
+    <pre class="pre" ng-bind-html="questionPool.closingSuccessText | linky"></pre>
     <p style="text-align: center">
       <button class="btn btn-default" ui-sref="app.home">Home</button>
     </p>
@@ -41,6 +42,7 @@
       erreicht, du benötigst jedoch mindestens {{questionPool.percentageToPass}}%. Du kannst es
       gleich noch einmal versuchen!
     </p>
+    <pre class="pre" ng-bind-html="questionPool.closingFailureText | linky"></pre>
     <p style="text-align: center">
       <button class="btn btn-default" ui-sref="app.subject({id: questionPool.subject.id})">Zurück zum Fach</button>
     </p>
