@@ -33,6 +33,17 @@
         <span ng-show="hasNoMaterial">Kein Material vorhanden</span>
       </div>
       <div class="col-xs-12">
+        &nbsp;
+      </div>
+      <div class="col-md-6">
+        <label>Text nach erfolgreichem Abschluss des Testes:</label>
+        <pre class="pre" ng-bind-html="questionPool.closingSuccessText | linky"></pre>
+      </div>
+      <div class="col-md-6">
+        <label>Text nach Nichtbestehen des Testes:</label>
+        <pre class="pre" ng-bind-html="questionPool.closingFailureText | linky"></pre>
+      </div>
+      <div class="col-xs-12">
         <button class="btn btn-default" ng-click="edit()">
           <span class="glyphicon glyphicon-edit"></span> Bearbeiten
         </button>
@@ -73,10 +84,16 @@
           <input type="file" class="form-control" testy-file-model="material" />
         </div>
       </div>
-      <div class="col-xs-12" ng-hide="editMode">
-        <button class="btn btn-default" ng-click="edit">
-          <span class="glyphicon glyphicon-edit"></span> Bearbeiten
-        </button>
+      <div class="col-xs-12">
+        &nbsp;
+      </div>
+      <div class="col-md-6">
+        <label>Text nach erfolgreichem Abschluss des Testes:</label>
+        <textarea class="form-control" ng-model="editedQuestionPool.closingSuccessText"></textarea>
+      </div>
+      <div class="col-md-6 form-group">
+        <label>Text nach Nichtbestehen des Testes:</label>
+        <textarea class="form-control" ng-model="editedQuestionPool.closingFailureText"></textarea>
       </div>
       <div class="col-xs-12" ng-show="editMode">
         <div class="btn-group">

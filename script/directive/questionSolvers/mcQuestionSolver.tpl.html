@@ -1,5 +1,5 @@
 <div>
-  <p>{{question.questionString}}</p>
+  <pre class="pre" ng-bind-html="question.questionString | linky"></pre>
 </div>
 <div>
   <div ng-repeat="possibility in question.possibleAnswers">
