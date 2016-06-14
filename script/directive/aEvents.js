@@ -28,7 +28,9 @@ _.forEach(eventNames, function(eventName) {
                 scope.$apply(callback);
               }
               if (_.get(maybePromise, 'then')) {
-                $rootScope.globals.showSpinner();
+                $rootScope.$apply(function() {
+                  $rootScope.globals.showSpinner();
+                });
                 maybePromise.then(enable).catch(thruEnable);
               } else {
                 enable();

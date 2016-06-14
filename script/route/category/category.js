@@ -19,10 +19,10 @@ angular.module('testy').controller('categoryController', [
 
       $scope.deleteQuestion = function(event, question) {
         event.stopPropagation();
-        $scope.globals.showGlobalModal(
+        return $scope.globals.showGlobalModal(
           'Bist du dir sicher, dass du diese Frage löschen möchtest?',
           function() {
-            serverCommunicator.deleteQuestionAsync(question).then(function() {
+            return serverCommunicator.deleteQuestionAsync(question).then(function() {
               _.pull($scope.questions, question);
             });
           }
@@ -30,10 +30,10 @@ angular.module('testy').controller('categoryController', [
       };
 
       $scope.deleteThis = function() {
-        $scope.globals.showGlobalModal(
+        return $scope.globals.showGlobalModal(
           'Bist du dir sicher, dass du diese Kategorie löschen möchtest? Alle Fragen gehen dabei verloren!',
           function() {
-            serverCommunicator.deleteCategoryByIdAsync($scope.category.id).then(function() {
+            return serverCommunicator.deleteCategoryByIdAsync($scope.category.id).then(function() {
               $state.go('app.questionPool', {id: category.pool.id});
             });
           });

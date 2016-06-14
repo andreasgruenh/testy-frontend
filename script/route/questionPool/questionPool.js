@@ -32,10 +32,10 @@ angular.module('testy').controller('questionPoolController', [
       };
 
       $scope.deleteThis = function() {
-        $scope.globals.showGlobalModal(
+        return $scope.globals.showGlobalModal(
           'Bist du sicher, dass du diesen Fragenpool löschen willst?',
           function() {
-            serverCommunicator.deleteQuestionPoolByIdAsync($scope.questionPool.id)
+            return serverCommunicator.deleteQuestionPoolByIdAsync($scope.questionPool.id)
               .then(function() {
                 $scope.globals.showGlobalAlert('success', 'Geschafft!', 'Der Fragenpool wurde gelöscht.');
                 $state.go('app.subject', {id: $scope.subject.id});
@@ -65,7 +65,7 @@ angular.module('testy').controller('questionPoolController', [
       };
 
       $scope.deleteResult = function(result) {
-        $scope.globals.showGlobalModal(
+        return $scope.globals.showGlobalModal(
           'Bist du sicher, dass du dieses Ergebnis löschen willst? Der Nutzer wird daraufhin nicht' +
           'mehr informiert, wenn er den Test wiederholen muss',
           function() {
