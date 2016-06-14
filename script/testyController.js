@@ -1,18 +1,18 @@
-angular.module('testy').controller('testyController', ['$scope', '$timeout', function($scope, $timeout) {
+angular.module('testy').controller('testyController', ['$rootScope', '$scope', '$timeout', function($rootScope, $scope, $timeout) {
 
   var timeout = {};
 
-  $scope.globals = {};
-  $scope.globalModalFunction = undefined;
-  $scope.globalModalText = "";
+  $rootScope.globals = {};
+  $rootScope.globalModalFunction = undefined;
+  $rootScope.globalModalText = "";
 
-  $scope.globals.showGlobalModal = function(text, callback) {
+  $rootScope.globals.showGlobalModal = function(text, callback) {
     $scope.globalModalText = text;
     $scope.globalModalFunction = callback;
     $('#globalModal').modal();
   };
 
-  $scope.globals.showGlobalAlert = function(type, caption, text) {
+  $rootScope.globals.showGlobalAlert = function(type, caption, text) {
     $scope.globalAlertType = type;
     $scope.globalAlertCaption = caption;
     $scope.globalAlertText = text;
