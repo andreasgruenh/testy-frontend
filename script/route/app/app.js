@@ -7,11 +7,11 @@ angular.module('testy').controller('appController', [
       $scope.window = window;
 
       $scope.logout = function($event) {
+        $event.preventDefault();
         return serverCommunicator.logoutAsync().then(
           function() {
             $state.go('login');
           });
-        $event.preventDefault();
       };
 
       if($scope.globals.currentUser.firstname === null ||
