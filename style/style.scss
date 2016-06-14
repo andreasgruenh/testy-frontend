@@ -9,6 +9,15 @@ body {
   padding-top: 50px;
 }
 
+.loading-spinner {
+  color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  font-size: 4em;
+  top: 55px;
+  right: 5px;
+  z-index: 9999;
+}
+
 .login-container {
   margin-top:50px;
 }

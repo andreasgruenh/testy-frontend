@@ -44,7 +44,7 @@
         <pre class="pre" ng-bind-html="questionPool.closingFailureText | linky"></pre>
       </div>
       <div class="col-xs-12">
-        <button class="btn btn-default" ng-click="edit()">
+        <button class="btn btn-default" a-click="edit()">
           <span class="glyphicon glyphicon-edit"></span> Bearbeiten
         </button>
       </div>
@@ -52,7 +52,7 @@
   </div>
   <div class="section" ng-show="editMode">
     <h2>Allgmeines</h2>
-    <form class="row" ng-submit="save()">
+    <form class="row" a-submit="save()">
       <div class="col-md-4">
         <div class="form-group">
           <label>Beschreibung:</label>
@@ -100,7 +100,7 @@
           <button type="submit" class="btn btn-success">
             <span class="glyphicon glyphicon-floppy-disk"></span> Speichern
           </button>
-          <button class="btn btn-warning" ng-click="cancel($event)">
+          <button class="btn btn-warning" a-click="cancel($event)">
             <span class="glyphicon glyphicon-edit"></span> Abbrechen
           </button>
         </div>
@@ -135,7 +135,7 @@
   <div class="section" ng-show="globals.currentUser.admin">
     <h2>Kategorie hinzufügen</h2>
     <div class="row">
-      <form ng-submit="addCategory();">
+      <form a-submit="addCategory();">
         <label class="col-xs-6">Name
           <input type="text" class="form-control" placeholder="Name der Kategorie" required
                ng-model="categoryName">
@@ -187,7 +187,7 @@
                 <span>{{getTimeForTimestamp(result.timestamp)}}</span>
               </td>
               <td class="col-xs-1">
-                <button ng-click="deleteResult(result)" class="btn btn-danger">
+                <button a-click="deleteResult(result)" class="btn btn-danger">
                   <span class="glyphicon glyphicon-remove"></span>
                 </button>
               </td>
@@ -197,7 +197,7 @@
       </div>
   </div>
   <div ng-show="globals.currentUser.admin" class="section">
-    <button ng-click="deleteThis()" class="delete-button btn btn-block btn-danger">
+    <button a-click="deleteThis()" class="delete-button btn btn-block btn-danger">
       Lösche diesen Fragenpool
     </button>
   </div>

@@ -51,7 +51,7 @@ angular.module('testy').controller('categoryController', [
       $scope.saveCategory = function() {
         var newCat = _.pick($scope.category, 'maxScore', 'name', 'id');
         newCat.maxScore = $scope.categoryQuestionCount * 10;
-        serverCommunicator.updateCategoryAsync(newCat).then(function(savedCategory) {
+        return serverCommunicator.updateCategoryAsync(newCat).then(function(savedCategory) {
           $scope.category = savedCategory;
           $scope.editMode = false;
         });

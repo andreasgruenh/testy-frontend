@@ -12,7 +12,7 @@ angular.module('testy').directive('testyheader',
           'serverCommunicator',
           function($scope, $state, serverCommunicator) {
             $scope.logout = function() {
-              serverCommunicator.logoutAsync().then(
+              return serverCommunicator.logoutAsync().then(
                 function(data, status, headers, config) {
                   $state.go('login');
                 }).catch(function(data, status, headers, config) {

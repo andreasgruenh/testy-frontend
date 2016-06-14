@@ -24,10 +24,10 @@ angular.module('testy').controller('questionPoolController', [
 
       $scope.save = function() {
         if ($scope.material) {
-          serverCommunicator.uploadMaterialForQuestionPool($scope.questionPool.id, $scope.material)
+          return serverCommunicator.uploadMaterialForQuestionPool($scope.questionPool.id, $scope.material)
             .then(savePoolAsync);
         } else {
-          savePoolAsync();
+          return savePoolAsync();
         }
       };
 
@@ -48,7 +48,7 @@ angular.module('testy').controller('questionPoolController', [
           name: $scope.categoryName,
           maxScore: $scope.questionCount * 10,
         };
-        serverCommunicator.addCategoryToPoolAsync(newCategory, $scope.questionPool.id)
+        return serverCommunicator.addCategoryToPoolAsync(newCategory, $scope.questionPool.id)
           .then(function(addedCategory) {
             $scope.categories = _.sortBy($scope.categories.concat([addedCategory]), 'name');
           });
@@ -65,9 +65,14 @@ angular.module('testy').controller('questionPoolController', [
       };
 
       $scope.deleteResult = function(result) {
-        serverCommunicator.deleteTestResultAsync(result).then(function() {
-          _.pull($scope.results, result);
-        });
+        $scope.globals.showGlobalModal(
+          'Bist du sicher, dass du dieses Ergebnis löschen willst? Der Nutzer wird daraufhin nicht' +
+          'mehr informiert, wenn er den Test wiederholen muss',
+          function() {
+            return serverCommunicator.deleteTestResultAsync(result).then(function() {
+              _.pull($scope.results, result);
+            });
+          });
       };
 
       function savePoolAsync() {

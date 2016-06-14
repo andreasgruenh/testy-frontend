@@ -21,7 +21,7 @@ angular.module('testy').controller('usersController', [
       };
 
       $scope.saveAccount = function(account) {
-        serverCommunicator.updateOtherAccountAsync($scope.editingCopiesById[account.id])
+        return serverCommunicator.updateOtherAccountAsync($scope.editingCopiesById[account.id])
           .then(function(newAccount) {
             $scope.accounts =
               _($scope.accounts).without(account).concat(newAccount).sortBy('accountName').value();

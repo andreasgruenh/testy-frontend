@@ -1,10 +1,8 @@
 angular.module('testy').controller('loginController',
     ['$scope', '$state', 'serverCommunicator', function($scope, $state, serverCommunicator){
 
-  var loginSent = false;
   $scope.login = function() {
-    if (loginSent) return;
-    serverCommunicator.loginAsync($scope.username, $scope.password).then(
+    return serverCommunicator.loginAsync($scope.username, $scope.password).then(
       function(data){
         $state.go('app.home');
       }, function(data){
@@ -16,8 +14,6 @@ angular.module('testy').controller('loginController',
             'Sorry!',
             'Das Backend ist leider gerade nicht erreichbar. Melde dich doch bei <a href="mailto:it@paul-consultants.de">it@paul-consultants.de</a>');
         }
-        loginSent = false;
       });
-    loginSent = true;
   };
 }]);

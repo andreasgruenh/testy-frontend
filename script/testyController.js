@@ -12,6 +12,14 @@ angular.module('testy').controller('testyController', ['$rootScope', '$scope', '
     $('#globalModal').modal();
   };
 
+  $rootScope.globals.showSpinner = function() {
+    $scope.showSpinner = true;
+  };
+
+  $rootScope.globals.hideSpinner = function() {
+    $scope.showSpinner = false;
+  };
+
   $rootScope.globals.showGlobalAlert = function(type, caption, text) {
     $scope.globalAlertType = type;
     $scope.globalAlertCaption = caption;

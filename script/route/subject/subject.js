@@ -9,14 +9,14 @@ angular.module('testy').controller('subjectController', [
       $scope.questionPools = _.sortBy(questionPools, 'name');
 
       $scope.addQuestionPool = function() {
-        serverCommunicator.addQuestionPoolAsync($scope.subject.id, { name: $scope.poolName })
+        return serverCommunicator.addQuestionPoolAsync($scope.subject.id, { name: $scope.poolName })
           .then(function(newPool) {
             $state.go('app.questionPool', {id: newPool.id});
           });
       };
 
       $scope.saveSubject = function() {
-        serverCommunicator.saveSubjectAsync($scope.editedSubject)
+        return serverCommunicator.saveSubjectAsync($scope.editedSubject)
           .then(function(savedSubject) {
             $scope.subject = savedSubject;
             $scope.editMode = false;

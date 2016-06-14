@@ -10,7 +10,7 @@
     <label>Beschreibung:</label>
     <p>{{_.isEmpty(subject.description) ? 'Keine Beschreibung vorhanden' : subject.description}}</p>
     <button ng-show="globals.currentUser.admin" class="btn btn-primary"
-            ng-click="edit()">
+            a-click="edit()">
     <span class="glyphicon glyphicon-edit"></span> Bearbeiten
     </button>
   </div>
@@ -22,11 +22,11 @@
     </div>
     <div class="btn-group">
       <button class="btn btn-success"
-              ng-click="saveSubject()">
+              a-click="saveSubject()">
       <span class="glyphicon glyphicon-floppy-disk"></span> Speichern
       </button>
       <button class="btn btn-warning"
-              ng-click="cancel()">
+              a-click="cancel()">
       <span class="glyphicon glyphicon-remove"></span> Abbrechen
       </button>
     </div>
@@ -68,7 +68,7 @@
     </div>
   </div>
   <div class="section" ng-show="globals.currentUser.admin">
-    <form ng-submit="addQuestionPool();">
+    <form a-submit="addQuestionPool();">
       <label><span class="glyphicon glyphicon-plus"></span> Neuen Fragenpool hinzufügen</label>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Name des Fragenpools" required
@@ -82,7 +82,7 @@
     </form>
   </div>
   <div ng-show="globals.currentUser.admin" class="section">
-    <button ng-click="deleteThis()" class="delete-button btn btn-block btn-danger">
+    <button a-click="deleteThis()" class="delete-button btn btn-block btn-danger">
       Lösche dieses Fach
     </button>
   </div>
