@@ -29,6 +29,16 @@ angular.module('testy').controller('categoryController', [
         );
       };
 
+      $scope.deleteThis = function() {
+        $scope.globals.showGlobalModal(
+          'Bist du dir sicher, dass du diese Kategorie löschen möchtest? Alle Fragen gehen dabei verloren!',
+          function() {
+            serverCommunicator.deleteCategoryByIdAsync($scope.category.id).then(function() {
+              $state.go('app.questionPool', {id: category.pool.id});
+            });
+          });
+      };
+
       $scope.editCategory = function() {
         $scope.editMode = true;
         $scope.categoryQuestionCount = $scope.category.maxScore / 10;

@@ -140,6 +140,10 @@ angular.module('testy').factory('serverCommunicator', ['$state', '$http', '$root
           .then(_.property('data')).catch(showRequestError);
       };
 
+      service.deleteCategoryByIdAsync = function(categoryId) {
+        return $http.delete(base + '/categories/' + categoryId).catch(showRequestError);
+      };
+
       service.getTestForQuestionPoolAsync = function(questionPoolId) {
         return $http.get(base + '/pools/' + questionPoolId + '/test').then(_.property('data'))
           .catch(showRequestError);
