@@ -9,6 +9,19 @@ body {
   padding-top: 50px;
 }
 
+.credits {
+  position: fixed;
+  bottom: 3px;
+  right: 3px;
+  font-size: 0.60em;
+  color: rgba(0, 0, 0, 0.53)
+}
+
+.page-header h1 {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 .loading-spinner {
   color: rgba(0, 0, 0, 0.5);
   position: fixed;
