@@ -24,6 +24,8 @@
         <p>{{ questionPool.weeksAfterWhichTestHasToBeRepeated }}
         </p>
       </div>
+    </div>
+    <div class="row">
       <div class="col-xs-12">
         <label>Hochgeladenes Material:</label>
         <a ng-hide="hasNoMaterial"
@@ -32,9 +34,13 @@
         </a>
         <span ng-show="hasNoMaterial">Kein Material vorhanden</span>
       </div>
+    </div>
+    <div class="row">
       <div class="col-xs-12">
         &nbsp;
       </div>
+    </div>
+    <div class="row">
       <div class="col-md-6">
         <label>Text nach erfolgreichem Abschluss des Testes:</label>
         <pre class="pre" ng-bind-html="questionPool.closingSuccessText | linky"></pre>
@@ -43,6 +49,8 @@
         <label>Text nach Nichtbestehen des Testes:</label>
         <pre class="pre" ng-bind-html="questionPool.closingFailureText | linky"></pre>
       </div>
+    </div>
+    <div class="row">
       <div class="col-xs-12">
         <button class="btn btn-default" a-click="edit()">
           <span class="glyphicon glyphicon-edit"></span> Bearbeiten
