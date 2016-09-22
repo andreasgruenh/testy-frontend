@@ -10,7 +10,7 @@ angular.module('testy').controller('questionPoolController', [
       $scope.subject = questionPool.subject;
       $scope.categories = _.sortBy(categories, 'name');
       $scope.results = _.sortBy(questionPool.results, 'user.accountName');
-      console.log($scope.results);
+
       recalculateHasNoMaterial();
       $scope.edit = function() {
         $scope.editMode = true;
